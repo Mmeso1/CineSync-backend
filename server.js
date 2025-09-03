@@ -3,7 +3,10 @@ const http = require("http");
 const { Server } = require("socket.io");
 
 const httpServer = http.createServer();
-const io = new Server(httpServer, { cors: { origin: "*" } });
+const io = new Server(httpServer, {
+  cors: { origin: "https://cinesync-2f0k.onrender.com" },
+});
+const PORT = process.env.PORT || 4000;
 
 io.on("connection", (socket) => {
   console.log("user connected", socket.id);
@@ -22,4 +25,4 @@ io.on("connection", (socket) => {
   });
 });
 
-httpServer.listen(4000, () => console.log("Server on http://localhost:4000"));
+httpServer.listen(PORT, () => console.log(`Server running on port ${PORT}`));
